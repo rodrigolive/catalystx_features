@@ -1,0 +1,4 @@
+Hello from Mason
+<pre>
+% use Data::Dumper;
+% print Dumper $c->config

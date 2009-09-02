@@ -1,0 +1,5 @@
+[% USE Dumper %]
+
+Hello from TT in the Main App 
+<pre>
+[% Dumper.dump( c.config ) %]

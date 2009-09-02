@@ -1,0 +1,5 @@
+[% USE Dumper %]
+
+My config:
+<pre>
+[% Dumper.dump( c.config ) %]
