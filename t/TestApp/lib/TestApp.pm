@@ -20,8 +20,6 @@ use Catalyst qw/-Debug
                 +CatalystX::Features::Plugin::I18N
                 +CatalystX::Features::Plugin::Static::Simple/;
 
-our $VERSION = '0.01';
-
 # Configure the application.
 #
 # Note that settings in testapp.conf (or other external
