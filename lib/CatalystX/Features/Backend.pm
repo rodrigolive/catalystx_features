@@ -79,6 +79,12 @@ sub me {    #TODO
     # then find the feature object from this path
 }
 
+1;
+
+__END__
+
+=pod 
+
 =head1 NAME
 
 CatalystX::Features::Backend - All the dirty work is done here
@@ -131,6 +137,4 @@ This library is free software. You can redistribute it and/or modify it under
 the same terms as Perl itself.
 
 =cut
-
-1;
 

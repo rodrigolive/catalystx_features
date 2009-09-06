@@ -74,6 +74,12 @@ Features Loaded:
 		if $c->debug;
 }
 
+1;
+
+__END__
+
+=pod
+
 =head1 NAME
 
 CatalystX::Features - Merges different application directories into your app.
@@ -202,5 +208,3 @@ This library is free software. You can redistribute it and/or modify it under
 the same terms as Perl itself.
 
 =cut
-
-1;
