@@ -1,9 +1,8 @@
 package TestApp;
-
 use strict;
 use warnings;
 
-use Catalyst::Runtime 5.80;
+use Catalyst::Runtime 5.70;
 
 # Set flags and add plugins for the application
 #
@@ -13,10 +12,12 @@ use Catalyst::Runtime 5.80;
 # Static::Simple: will serve static files from the application's root
 #                 directory
 
-use parent qw/Catalyst/;
+use base qw/Catalyst/;
 use Catalyst qw/-Debug
                 +CatalystX::Features
+                +CatalystX::Features::Lib
                 +CatalystX::Features::Plugin::ConfigLoader
+                +CatalystX::Features::Plugin::I18N
                 +CatalystX::Features::Plugin::Static::Simple/;
 
 our $VERSION = '0.01';
@@ -59,7 +60,7 @@ L<TestApp::Controller::Root>, L<Catalyst>
 
 =head1 AUTHOR
 
-Rodrigo de Oliveira
+	Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
 
 =head1 LICENSE
 

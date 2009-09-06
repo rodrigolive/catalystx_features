@@ -8,24 +8,36 @@ use Class::Inspector;
 use Path::Class;
 use CatalystX::Features::Backend;
 
-our $VERSION = '0.10';
+our $config_key = 'CatalystX::Features';
 
 sub features_setup {
     my $c = shift;
 
-    my $config = $c->config;
+    my $config = $c->config->{ $config_key };
 
-    unless( defined $c->config->{features}->{backend} ) {
-        $config->{features}->{home} ||= [ Path::Class::dir($config->{home} . "/features")->stringify ];
-        my $backend = new CatalystX::Features::Backend({ include_path=>$config->{features}->{home} });
+    unless ( defined $config->{backend} ) {
+
+        $config->{home} ||=
+          [ Path::Class::dir( $c->config->{home} . "/features" )->stringify ];
+
+        my $backend_class = $config->{backend}
+          || 'CatalystX::Features::Backend';
+
+        my $backend = $backend_class->new(
+            {
+                include_path => $config->{home},
+                app       => $c,
+            }
+        );
         $backend->init;
-        $c->config->{features}->{backend} = $backend;
-		$c->log_features_table;
+        $c->config->{$config_key}->{backend} = $backend;
+        $c->_log_features_table;
     }
 }
 
 sub setup {
     my $c = shift;
+
     $c->next::method(@_);
 
     $c->features_setup;
@@ -38,10 +50,10 @@ sub features {
 
     $c->features_setup;
 
-    return $c->config->{features}->{backend}->array;
+    return $c->config->{ $config_key }->{backend};
 }
 
-sub log_features_table {
+sub _log_features_table {
     my $c = shift;
     my $table = <<"";
 Features Loaded:
@@ -49,19 +61,16 @@ Features Loaded:
 | Home                                   | Name                   | Version  |
 +----------------------------------------+------------------------+----------+
 
-    foreach my $feature ( $c->features ) {
+    foreach my $feature ( $c->features->list ) {
         $table .= sprintf("| %-38s ", $feature->id );
         $table .= sprintf("| %-22s ", $feature->name );
         $table .= sprintf("| %-8s |\n", $feature->version );
-
-        # change INC
-        push @INC, $feature->lib;
     }
 
     $table .= <<"";
 .-----------------------------------------------------------------+----------.
 
-    $c->log->debug( $table )
+    $c->log->debug( $table . "\n" )
 		if $c->debug;
 }
 
@@ -69,15 +78,12 @@ Features Loaded:
 
 CatalystX::Features - Merges different application directories into your app.
 
-=head1 VERSION
-
-version 0.10
-
 =head1 SYNOPSIS
 
 	package MyApp;
 	use Catalyst qw/-Debug
                 +CatalystX::Features
+                +CatalystX::Features::Lib
                 +CatalystX::Features::Plugin::ConfigLoader
                 +CatalystX::Features::Plugin::Static::Simple/;
 
@@ -91,13 +97,21 @@ It also comes handy in a large project, with many developers working on specific
 
 =head1 USAGE
 
-=list Create a directory under your app home named /features
+=over 
 
-=list Each feature home dir should be named something like:
+=item * Create a directory under your app home named /features
 
-	/features/my.demo.feature_1.0.0
+	mkdir /MyApp/features/
 
-It's a split on underscore "_", the first part is the feature name, the second is the feature version.
+=item * Each feature home dir should be named something like:
+
+	/MyApp/features/my.demo.feature_1.0.0
+
+=back
+
+It's a split on underscore C<_>, the first part is the feature name, the second is the feature version.
+
+Also splits on a dash C<->, allowing the feature to be named like C<Feature-0.9123>.  
 
 If a higher version of a feature is found, that's the one to be used, the rest is ignored
 - a feature without a version is ok, it will be the highest version available - good for local dev and pushing to a repository.
@@ -126,30 +140,67 @@ Defaults to:
 
 	MyApp/features
 
+=head2 backend_class
+
+Sets an alternative class to use as a backend. The default is
+L<CatalystX::Features::Backend>.
+
+	<CatalystX::Features>
+		backend_class MyApp::Features
+	</CatalystX::Features>
+
+=head2 feature_class
+
+Sets an alternative class to represent a single feature. The default is
+L<CatalystX::Features::Feature>. This class should implement the role L<CatalystX::Features::Role::Feature>.
+
+	<CatalystX::Features>
+		feature_class MyApp::Feature
+	</CatalystX::Features>
+
 =head1 METHODS
+
+=head2 $c->setup
+
+The plugin setup method. Loads features and prints the feature configuration table. 
 
 =head2 $c->features
 
+Returns the feature backend object.
+
+=head2 $c->features->list
+
 Returns an array of loaded features, which are instances of the L<CatalystX::Features::Feature> class.
+
+=head2 $c->features_setup
+
+Does the dirty setup work. Called from various C<CatalystX::Features::Plugin::*> to make sure features are loaded.
 
 =head1 TODO
 
-=head2 Check dependencies among features. 
-=head2 Deploy PAR/ZIP files automatically. 
+These things here, and many, many more that I can't recall right now.
+
+=over 4
+
+=item * Check dependencies among features. 
+
+=item * More plugins.
+
+=item * Deploy PAR/ZIP files automatically. 
+
+=item * Delayed initialization into INC
+
+=back
 
 =head1 AUTHORS
 
-Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
+	Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
 
-=head1 COPYRIGHT & LICENSE
+=head1 LICENSE
 
-        Copyright (c) 2009 the aforementioned authors. All rights
-        reserved. This program is free software; you can redistribute
-        it and/or modify it under the same terms as Perl itself.
+This library is free software. You can redistribute it and/or modify it under
+the same terms as Perl itself.
 
 =cut
-
-
-
 
 1;

@@ -3,23 +3,28 @@ use Moose;
 use Path::Class;
 use Catalyst::Utils;
 
+has 'backend' => ( is=>'ro', isa=>'CatalystX::Features::Role::Backend', required=>1 );
+
 has 'id' => ( is=>'rw', isa=>'Str' );
 has 'name' => ( is=>'rw', isa=>'Str' );
 has 'version' => ( is=>'rw', isa=>'Str', default=>'1.0.0' );
-has 'path' => ( is=>'rw', isa=>'Str', trigger=> \&build_args );
+has 'path' => ( is=>'rw', isa=>'Str', trigger=> \&_build_args );
 
 has 'root' => ( is=>'rw', isa=>'Str' );
 has 'lib' => ( is=>'rw', isa=>'Str' );
 has 't' => ( is=>'rw', isa=>'Str' );
 
-with 'CatalystX::Features::Role::Feature';  # the interface role, after all the 'has'
+with 'CatalystX::Features::Role::Feature';  # the interface role, place after 'has'
 
-sub build_args {
+sub _build_args {
     my ($self, $value ) = @_;
+
     my $path = $self->path; 
     my $full_path = Path::Class::dir( $path ); 
     my $id = $full_path->relative( $full_path->parent )->stringify;
+
     my ($name,$version) = ( $id =~ /^(.*?)[_|-](.*?)$/ );
+
     $self->id( $id );
     $self->name( $name || $id );
     $version && $self->version( $version );
@@ -43,13 +48,16 @@ sub version_number {
     }
 }
 
+sub config {
+    my $self = shift;
+
+	$self->backend->config->{ $self->name };
+
+}
+
 =head1 NAME
 
 CatalystX::Features::Feature - Class that represents a single feature.
-
-=head1 VERSION
-
-version 0.10
 
 =head1 SYNOPSIS
 
@@ -62,6 +70,8 @@ version 0.10
 This is the object you get when you list features with $c->features.
 
 =head1 METHODS
+
+This is how this class implements the required interfaces from the role L<CatalystX::Features::Role::Feature>.
 
 =head2 $c->id
 
@@ -87,13 +97,12 @@ Not everyone want to have this object as a base class for their features. There 
 
 =head1 AUTHORS
 
-Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
+	Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
 
-=head1 COPYRIGHT & LICENSE
+=head1 LICENSE
 
-        Copyright (c) 2009 the aforementioned authors. All rights
-        reserved. This program is free software; you can redistribute
-        it and/or modify it under the same terms as Perl itself.
+This library is free software. You can redistribute it and/or modify it under
+the same terms as Perl itself.
 
 =cut 
 

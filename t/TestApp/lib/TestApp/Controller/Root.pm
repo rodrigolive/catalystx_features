@@ -45,6 +45,18 @@ sub main :Local {
 	$c->forward('View::TT');	
 }
 
+sub main_to_test :Local {
+    my ( $self, $c ) = @_;
+	$c->stash->{template} = 'more.tt'; 
+	$c->forward('View::TT');	
+}
+
+sub loc : Local {
+    my ( $self, $c ) = @_;
+	$c->languages( ['es'] );
+    $c->response->body( $c->loc('silly') );
+}
+
 =head2 end
 
 Attempt to render a view, if needed.

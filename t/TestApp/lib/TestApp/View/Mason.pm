@@ -1,9 +1,7 @@
 package TestApp::View::Mason;
-
 use strict;
 use warnings;
-
-use parent 'CatalystX::Features::View::Mason';
+use base 'CatalystX::Features::View::Mason';
 
 __PACKAGE__->config(use_match => 0);
 

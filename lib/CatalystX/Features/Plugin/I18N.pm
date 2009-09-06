@@ -4,8 +4,6 @@ use warnings;
 use parent 'Catalyst::Plugin::I18N';
 use MRO::Compat;
 
-our $VERSION = '0.10';
-
 sub setup {
     my $c = shift;
 
@@ -13,7 +11,7 @@ sub setup {
 
     my $appname = ref $c || $c;
 
-    foreach my $feature ( $c->features ) {
+    foreach my $feature ( $c->features->list ) {
         my $path = Path::Class::dir( $feature->lib, $appname, 'I18N' );
 
         my $pattern = File::Spec->catfile($path, '*.[pm]o');
@@ -34,5 +32,28 @@ sub setup {
     
     }
 }
+
+=head1 NAME
+
+CatalystX::Features::Plugin::I18N - Makes C::P::I18N know about features
+
+=head1 DESCRIPTION
+
+This plugin will search for a C<I18N> dir under C<MyApp> in your features directory, then add it to 
+the localization lexicon. 
+
+Duplicate entries are treated on a last come, first serve based. The last feature loaded will have precedence 
+over the rest. 
+
+=head1 AUTHORS
+
+	Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify it under
+the same terms as Perl itself.
+
+=cut
 
 1;
