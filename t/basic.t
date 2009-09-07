@@ -9,52 +9,53 @@ use lib "$FindBin::Bin/TestApp/lib";
 use Catalyst::Test 'TestApp';
 
 {
-    my ($resp, $c) = ctx_request('/loc');
+    my $resp = request('/loc');
     is($resp->content, 'tontoculo', 'basic localization');
 }
 
 {
-    my ($resp, $c) = ctx_request('/test/loc');
+    my $resp = request('/test/loc');
     is($resp->content, 'chungo', 'feature localization');
 }
 
 {
-    my ($resp, $c) = ctx_request('/static/main.js');
+    my $resp = request('/static/main.js');
     is($resp->content, "static stuff\n", 'basic static simple');
 }
 
 {
-    my ($resp, $c) = ctx_request('/static/feature.html');
+    my $resp = request('/static/feature.html');
     is($resp->content, "feature body\n", 'feature static simple');
 }
 
 {
-    my ($resp, $c) = ctx_request('/test/mason');
+    my $resp = request('/test/mason');
     is($resp->content, 'mason running', 'feature mason template');
 }
 
 {
-    my ($resp, $c) = ctx_request('/test/tt');
+    my $resp = request('/test/tt');
     is($resp->content, 'in feature tt', 'feature tt template');
 }
 
 {
-    my ($resp, $c) = ctx_request('/test/foo');
+    my $resp = request('/test/foo');
     is($resp->content, 'bar', 'feature config value test');
 }
 
 {
-    my ($resp, $c) = ctx_request('/main');
+    my $resp = request('/main');
     is($resp->content, 'in main tt', 'basic tt template' );
 }
 
 {
-    my ($resp, $c) = ctx_request('/main_to_test');
+    my $resp = request('/main_to_test');
     is($resp->content, 'in feature tt', 'forward from main app to a feature template');
 }
 
+# not ready yet
 #{
-#    my ($resp, $c) = ctx_request('/test/init');
+#    my $resp = request('/test/init');
 #    is($resp->content, 'value: 99', 'feature main module init');
 #}
 

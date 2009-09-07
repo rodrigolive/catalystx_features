@@ -82,7 +82,7 @@ __END__
 
 =head1 NAME
 
-CatalystX::Features - Merges different application directories into your app.
+CatalystX::Features - Merges different application directories into your app
 
 =head1 SYNOPSIS
 
@@ -163,6 +163,10 @@ L<CatalystX::Features::Feature>. This class should implement the role L<Catalyst
 	<CatalystX::Features>
 		feature_class MyApp::Feature
 	</CatalystX::Features>
+
+=head1 EXAMPLES
+
+For a simple app example, try taking a look at C<t/TestApp> in the distribution file. 
 
 =head1 METHODS
 
