@@ -200,7 +200,7 @@ These things here, and many, many more that I can't recall right now.
 
 =head1 AUTHORS
 
-	Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
+    Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
 
 =head1 LICENSE
 

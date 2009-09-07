@@ -101,7 +101,7 @@ Not everyone want to have this object as a base class for their features. There 
 
 =head1 AUTHORS
 
-	Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
+    Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
 
 =head1 LICENSE
 

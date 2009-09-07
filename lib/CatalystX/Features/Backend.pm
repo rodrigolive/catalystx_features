@@ -129,7 +129,7 @@ Not implemented yet.
 
 =head1 AUTHORS
 
-	Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
+    Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
 
 =head1 LICENSE
 
