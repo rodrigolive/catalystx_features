@@ -18,22 +18,19 @@ This role is an interface. No code here.
 
 =head2 init
 
-Gets called by the main L<CatalystX::Features> plugin during C<use Catalyst
-qw/.../> phase.
+Gets called by the main L<CatalystX::Features> plugin during C<use Catalyst qw/.../> phase.
 
 =head2 list
 
-Returns a list of available features, all of them
-L<CatalystX::Features::Role::Feature> objects.
+Returns a list of available features, all of them L<CatalystX::Features::Role::Feature> objects.
 
 =head2 me 
 
-Returns and instance of L<CatalystX::Features::Role::Feature> corresponding to
-the feature from which it's being called.
+Returns and instance of L<CatalystX::Features::Role::Feature> corresponding to the feature from which it's being called.  
 
 =head2 get
 
-Given a feature name (say C<my.simple.feature>) returns the feature object.
+Given a feature name (say C<my.simple.feature>) returns the feature object. 
 
 =head1 AUTHORS
 

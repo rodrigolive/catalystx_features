@@ -20,8 +20,7 @@ sub setup {
 
 =head1 NAME
 
-CatalystX::Features::Plugin::Static::Simple - Makes C::P::Static::Simple know
-about features
+CatalystX::Features::Plugin::Static::Simple - Makes C::P::Static::Simple know about features
 
 =head1 AUTHORS
 

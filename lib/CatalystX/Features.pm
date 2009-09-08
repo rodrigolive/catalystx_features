@@ -1,8 +1,8 @@
 package CatalystX::Features;
 use warnings;
 use strict;
-
 use Carp;
+use base qw/Class::Accessor::Fast Class::Data::Inheritable/;
 use MRO::Compat;
 use Class::Inspector;
 use Path::Class;
@@ -13,7 +13,7 @@ our $config_key = 'CatalystX::Features';
 sub features_setup {
     my $c = shift;
 
-    my $config = $c->config->{$config_key};
+    my $config = $c->config->{ $config_key };
 
     unless ( defined $config->{backend} ) {
 
@@ -26,7 +26,7 @@ sub features_setup {
         my $backend = $backend_class->new(
             {
                 include_path => $config->{home},
-                app          => $c,
+                app       => $c,
             }
         );
         $backend->init;
@@ -41,7 +41,7 @@ sub setup {
     $c->next::method(@_);
 
     $c->features_setup;
-
+    
     return $c;
 }
 
@@ -50,11 +50,11 @@ sub features {
 
     $c->features_setup;
 
-    return $c->config->{$config_key}->{backend};
+    return $c->config->{ $config_key }->{backend};
 }
 
 sub _log_features_table {
-    my $c     = shift;
+    my $c = shift;
     my $table = <<"";
 Features Loaded:
 .----------------------------------------+------------------------+----------.
@@ -62,16 +62,16 @@ Features Loaded:
 +----------------------------------------+------------------------+----------+
 
     foreach my $feature ( $c->features->list ) {
-        $table .= sprintf( "| %-38s ",   $feature->id );
-        $table .= sprintf( "| %-22s ",   $feature->name );
-        $table .= sprintf( "| %-8s |\n", $feature->version );
+        $table .= sprintf("| %-38s ", $feature->id );
+        $table .= sprintf("| %-22s ", $feature->name );
+        $table .= sprintf("| %-8s |\n", $feature->version );
     }
 
     $table .= <<"";
 .-----------------------------------------------------------------+----------.
 
     $c->log->debug( $table . "\n" )
-      if $c->debug;
+		if $c->debug;
 }
 
 1;
@@ -305,7 +305,7 @@ These things here, and many, many more that I can't recall right now.
 =head1 BUGS
 
 This is running in production right now somewhere in the corporate limbo.
-It has behaved so far. 
+It has behaved well... so far. 
 
 =head1 AUTHORS
 
@@ -317,3 +317,4 @@ This library is free software. You can redistribute it and/or modify it under
 the same terms as Perl itself.
 
 =cut
+
