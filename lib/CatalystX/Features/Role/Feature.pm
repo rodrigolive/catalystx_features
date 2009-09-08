@@ -14,7 +14,7 @@ requires qw/root lib t/;
 
 =head1 NAME
 
-CatalystX::Features::Role::Feature - Role for implementing a single feature. 
+CatalystX::Features::Role::Feature - Role for implementing a single feature.
 
 =head1 DESCRIPTION
 
@@ -24,14 +24,14 @@ This role is an interface. No code here.
 
 =head2 path
 
-Needed by the constructor. Receives a full path to the feature, i.e. 
+Needed by the constructor. Receives a full path to the feature, i.e.
 
 	/home/myapp/features/my.simple.feature_1.0.0
 
 =head2 backend
 
-Needed by the constructor. Passed the instance of the controller.
-Should have a type of L<CatalystX::Features::Role::Backend>.
+Needed by the constructor. Passed the instance of the controller. Should have
+a type of L<CatalystX::Features::Role::Backend>.
 
 	has 'backend' => ( is=>'ro', isa=>'CatalystX::Features::Role::Backend', required=>1 );
 
@@ -39,16 +39,18 @@ Should have a type of L<CatalystX::Features::Role::Backend>.
 
 =head2 id
 
-The last folder in the feature path, say C<my.feature_1.0>. It's used as a unique identifier for this feature.
+The last folder in the feature path, say C<my.feature_1.0>. It's used as a
+unique identifier for this feature.
 
 =head2 name
 
-The name of the feature, say C<my.simple.feature>. This is also a unique identifier application wide. 
-There should not exist 2 or more features with the same name loaded at any given time. 
+The name of the feature, say C<my.simple.feature>. This is also a unique
+identifier application wide.  There should not exist 2 or more features with
+the same name loaded at any given time.
 
 =head2 version
 
-A version token of any format. 
+A version token of any format.
 
 =head2 version_number
 
@@ -56,11 +58,13 @@ A version long integer that can be compared easily.
 
 =head2 root
 
-Returns the full path to the C</root> dir for a given feature. Used by many C<View> modifiers.
+Returns the full path to the C</root> dir for a given feature. Used by many
+C<View> modifiers.
 
 =head2 lib
 
-Returns the full path of the C</lib> dir for a given feature. Used by C<@INC> modifiers or any plugins.  
+Returns the full path of the C</lib> dir for a given feature. Used by C<@INC>
+modifiers or any plugins.
 
 =head1 AUTHORS
 

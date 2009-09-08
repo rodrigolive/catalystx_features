@@ -19,13 +19,13 @@ Or maybe:
 
 =head1 DESCRIPTION
 
-WIP. Work in progress. 
+WIP. Work in progress.
 
-This is a placeholder for an upcoming plugin for pre and post setup phases. The idea
-is to have your feature run code during the application startup phase.
+This is a placeholder for an upcoming plugin for pre and post setup phases. The
+ idea is to have your feature run code during the application startup phase.
 
-Right now, running C<before> and C<after> setup handlers somewhere within your feature 
-may suffice. 
+Right now, running C<before> and C<after> setup handlers somewhere within your
+feature may suffice.
 
 	before 'setup' => sub {
 		...

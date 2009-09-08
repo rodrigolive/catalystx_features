@@ -73,9 +73,16 @@ CatalystX::Features::Feature - Class that represents a single feature.
 
 This is the object you get when you list features with $c->features.
 
+=head2 Changing the base class name thru config
+
+Not everyone want to have this object as a base class for their features. There
+ is a role (interface) already created in case you want to create your own
+class from scratch.
+
 =head1 METHODS
 
-This is how this class implements the required interfaces from the role L<CatalystX::Features::Role::Feature>.
+This is how this class implements the required interfaces from the role
+L<CatalystX::Features::Role::Feature>.
 
 =head2 $c->id
 
@@ -91,13 +98,9 @@ For a feature directory of "my.feature_1.0", the version is "1.0".
 
 =head2 $c->version_number
 
-A version long integer that can be compared easily. For a feature directory of "my.feature_1.2.3", the version number equals 001002003.
+A version long integer that can be compared easily. For a feature directory of
+"my.feature_1.2.3", the version number equals 001002003.
 
-=head1 TODO
-
-=head2 Change the base class name thru config
-
-Not everyone want to have this object as a base class for their features. There is a role (interface) already created in case you want to create your own class from scratch.
 
 =head1 AUTHORS
 

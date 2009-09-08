@@ -39,11 +39,11 @@ CatalystX::Features::Plugin::I18N - Makes C::P::I18N know about features
 
 =head1 DESCRIPTION
 
-This plugin will search for a C<I18N> dir under C<MyApp> in your features directory, then add it to 
-the localization lexicon. 
+This plugin will search for a C<I18N> dir under C<MyApp> in your features
+directory, then add it to the localization lexicon.
 
-Duplicate entries are treated on a last come, first serve based. The last feature loaded will have precedence 
-over the rest. 
+Duplicate entries are treated on a last come, first serve based. The last
+feature loaded will have precedence over the rest.
 
 =head1 AUTHORS
 

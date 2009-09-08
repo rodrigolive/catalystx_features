@@ -105,19 +105,22 @@ Returns the config hash part related to L<CatalystX::Features>.
 
 =head2 $c->features->init()
 
-Initializes the backend, searching for features and creating L<CatalystX::Features::Feature> instances for them. 
+Initializes the backend, searching for features and creating
+L<CatalystX::Features::Feature> instances for them.
 
 =head2 $c->features->list()
 
-Returns an array with instances of all loaded features. If they have not changed via config, they'll be instances of the L<CatalystX::Features::Feature> class.
+Returns an array with instances of all loaded features. If they have not
+changed via config, they'll be instances of the L<CatalystX::Features::Feature>
+ class.
 
 =head2 $c->features->get( $feature_name ) 
 
-Get the object instance of a given feature name. 
+Get the object instance of a given feature name.
 
 =head2 $c->features->me()
 
-Not implemented yet.
+Not implemented yet. Coming soon.
 
 =head1 TODO 
 

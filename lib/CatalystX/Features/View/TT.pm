@@ -37,7 +37,7 @@ sub new {
 
 =head1 NAME
 
-CatalystX::Features::View::TT - Makes View::TT handle features. 
+CatalystX::Features::View::TT - Makes View::TT handle features.
 
 =head1 SYNOPSIS
 
@@ -52,15 +52,16 @@ CatalystX::Features::View::TT - Makes View::TT handle features.
 
 =head1 DESCRIPTION
 
-Use this base class to make View::TT support TT in your features. 
+Use this base class to make View::TT support TT in your features.
 
-This class will modify C<INCLUDE_PATH>, adding the C</root> dir of each feature in the app.
+This class will modify C<INCLUDE_PATH>, adding the C</root> dir of each feature
+in the app.
 
 =head1 CONFIG
 
 =head2 tt_prefix
 
-Appended to the feature C</root> dir. 
+Appended to the feature C</root> dir.
 
 	<CatalystX::Features>
 		<simple.feature>

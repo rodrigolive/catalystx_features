@@ -52,7 +52,7 @@ CatalystX::Features::View::Mason - Makes View::Mason know about features
 
 =head1 DESCRIPTION
 
-Use this base class to make View::Mason support Mason in your features. 
+Use this base class to make View::Mason support Mason in your features.
 
 Just make C<MyApp::View::Mason> inherit from this class to put mason files 
 under your feature's C</root>.
@@ -61,7 +61,7 @@ under your feature's C</root>.
 
 =head2 mason_prefix
 
-Appended to the feature C</root> dir. 
+Appended to the feature C</root> dir.
 
 	<CatalystX::Features>
 		<simple.feature>
