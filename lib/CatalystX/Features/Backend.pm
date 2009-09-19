@@ -1,10 +1,12 @@
 package CatalystX::Features::Backend;
 use Moose;
 use Path::Class;
+use Carp;
 
-has 'include_path' => ( is => 'rw', isa => 'ArrayRef' );
-has 'features'     => ( is => 'rw', isa => 'HashRef', default => sub { {} } );
-has 'app'          => ( is => 'ro', isa => 'Any', required=>1 );
+has 'include_path'  => ( is => 'rw', isa => 'ArrayRef' );
+has 'features'      => ( is => 'rw', isa => 'HashRef', default => sub { {} } );
+has 'app'           => ( is => 'ro', isa => 'Any', required=>1 );
+has 'feature_class' => ( is => 'rw', isa => 'Str' );
 
 *list = \&_array;
 
@@ -12,12 +14,15 @@ with 'CatalystX::Features::Role::Backend';
 
 sub init {
     my $self = shift;
+    return if $ENV{CATALYSTX_NO_FEATURES};
     for my $home ( @{ $self->include_path || [] } ) {
-        my @features = _find_features($home);
+        my @features = $self->_find_features($home);
         foreach my $feature_path (@features) {
 
             my $feature_class = $self->app->config->{feature_class}
               || 'CatalystX::Features::Feature';
+
+            $self->feature_class( $feature_class );
 
             # init feature
 			eval "require $feature_class";
@@ -28,16 +33,41 @@ sub init {
                 }
             );
 
-            $self->_push_feature($feature);
+            $self->_push_feature($feature)
+                if $feature->id !~ m/^#/;
         }
     }
 }
 
 sub _find_features {
+    my $self = shift;
     my $home = shift;
     my @features =
-      grep { -d $_ } map { Path::Class::dir($_) } glob $home . '/*';
+      map { Path::Class::dir($_) } grep { -d $_ } glob $home . '/*';
     return @features;
+}
+
+sub find {
+    my ( $self, %args ) = @_;
+    if( defined $args{file} ) {
+        my $file = Path::Class::file( $args{file} );
+        for my $feature ( $self->_array ) {
+            return $feature
+              if Path::Class::dir( $feature->path )->contains($file);
+        }
+
+        # not found, return a fake feature for the app
+        my $apphome = Path::Class::dir( $self->app->config->{home} );
+        if( $apphome->contains( $file ) ) { 
+            my $class = $self->feature_class;
+            return $class->new({
+                path => $apphome->stringify,
+                backend => $self,
+            });
+        } else {
+            confess "File " . $file->absolute . " is not in any feature or the main app."; 
+        }
+    }
 }
 
 sub _push_feature {
@@ -46,12 +76,13 @@ sub _push_feature {
     foreach my $feature_name ( keys %{ $self->features } ) {
         my $feature = $self->features->{$feature_name};
         if ( $feature->name eq $new_feature->name ) {
-            if ( $feature->version_number > $new_feature->version_number ) {
-                return;
+            if ( $feature->version eq 'max' || $feature->version_number > $new_feature->version_number ) {
+                return 0;
             }
         }
     }
     $self->features->{ $new_feature->name } = $new_feature;
+    return 1;
 }
 
 sub config {
@@ -89,13 +120,17 @@ __END__
 
 CatalystX::Features::Backend - All the dirty work is done here
 
+=head1 VERSION
+
+version 0.11
+
 =head1 SYNOPSIS
 
 	my $backend = $c->features;
 
-	$backend->config; # my config 
-
 	$backend->list; # a list of features
+
+	$backend->config; # my config 
 
 =head1 METHODS
 
@@ -106,6 +141,10 @@ Returns the config hash part related to L<CatalystX::Features>.
 =head2 $c->features->init()
 
 Initializes the backend, searching for features and creating L<CatalystX::Features::Feature> instances for them. 
+
+=head2 $c->features->find( file=>'filename.ext' )
+
+Returns the feature that contains a file.
 
 =head2 $c->features->list()
 
@@ -129,7 +168,7 @@ Not implemented yet.
 
 =head1 AUTHORS
 
-    Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
+	Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
 
 =head1 LICENSE
 

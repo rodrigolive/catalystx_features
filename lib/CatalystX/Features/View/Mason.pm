@@ -11,7 +11,7 @@ sub new {
 
     foreach my $feature ( $app->features->list ) {
 
-        my $prefix = $app->features->config->{ $feature->name }->{mason_prefix};
+        my $prefix = $app->features->config->{ $feature->name }->{mason_prefix} || '';
 
         if ( ref $prefix eq 'ARRAY' ) {
 			my $cnt;
@@ -44,6 +44,10 @@ sub new {
 =head1 NAME
 
 CatalystX::Features::View::Mason - Makes View::Mason know about features
+
+=head1 VERSION
+
+version 0.10
 
 =head1 SYNOPSIS
 

@@ -27,6 +27,10 @@ sub find_files {
 
 CatalystX::Features::Plugin::ConfigLoader - Makes ConfigLoader know about features
 
+=head1 VERSION
+
+version 0.10
+
 =head1 SYNOPSIS
 
 	/MyApp/features/my.simple.feature_1.23/my.simple.feature.conf
@@ -59,4 +63,4 @@ the same terms as Perl itself.
 =cut
 
 1;
-
+

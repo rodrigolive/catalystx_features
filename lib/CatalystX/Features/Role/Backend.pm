@@ -1,4 +1,5 @@
 package CatalystX::Features::Role::Backend;
+
 use Moose::Role;
 
 requires 'init';
@@ -9,6 +10,10 @@ requires 'me';
 =head1 NAME
 
 CatalystX::Features::Role::Backend - Role for implementing a backend.
+
+=head1 VERSION
+
+version 0.10
 
 =head1 DESCRIPTION
 
@@ -44,4 +49,3 @@ the same terms as Perl itself.
 =cut 
 
 1;
-

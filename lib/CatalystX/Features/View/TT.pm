@@ -14,7 +14,7 @@ sub new {
 
     foreach my $feature ( $app->features->list ) {
 
-        my $prefix = $app->features->config->{ $feature->name }->{tt_prefix};
+        my $prefix = $app->features->config->{ $feature->name }->{tt_prefix} || '';
 
         if ( ref $prefix eq 'ARRAY' ) {
             for ( @{$prefix} ) {
@@ -38,6 +38,10 @@ sub new {
 =head1 NAME
 
 CatalystX::Features::View::TT - Makes View::TT handle features. 
+
+=head1 VERSION
+
+version 0.10
 
 =head1 SYNOPSIS
 
