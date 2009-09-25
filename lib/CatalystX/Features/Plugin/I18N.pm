@@ -37,10 +37,6 @@ sub setup {
 
 CatalystX::Features::Plugin::I18N - Makes C::P::I18N know about features
 
-=head1 VERSION
-
-version 0.10
-
 =head1 DESCRIPTION
 
 This plugin will search for a C<I18N> dir under C<MyApp> in your features directory, then add it to 
@@ -60,4 +56,4 @@ the same terms as Perl itself.
 
 =cut
 
-1;
+1;

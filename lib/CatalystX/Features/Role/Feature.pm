@@ -16,10 +16,6 @@ requires qw/root lib t/;
 
 CatalystX::Features::Role::Feature - Role for implementing a single feature. 
 
-=head1 VERSION
-
-version 0.10
-
 =head1 DESCRIPTION
 
 This role is an interface. No code here.
@@ -77,4 +73,4 @@ the same terms as Perl itself.
 
 =cut 
 
-1;
+1;

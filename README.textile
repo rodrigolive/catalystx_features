@@ -1,4 +1,4 @@
 h1. Now available on CPAN
 
-[http://search.cpan.org/dist/CatalystX-Features/]
+"CatalystX::Features":http://search.cpan.org/dist/CatalystX-Features/
 

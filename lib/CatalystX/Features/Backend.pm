@@ -120,10 +120,6 @@ __END__
 
 CatalystX::Features::Backend - All the dirty work is done here
 
-=head1 VERSION
-
-version 0.11
-
 =head1 SYNOPSIS
 
 	my $backend = $c->features;

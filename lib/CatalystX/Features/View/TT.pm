@@ -39,10 +39,6 @@ sub new {
 
 CatalystX::Features::View::TT - Makes View::TT handle features. 
 
-=head1 VERSION
-
-version 0.10
-
 =head1 SYNOPSIS
 
 	package MyApp::View::TT;

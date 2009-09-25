@@ -11,10 +11,6 @@ requires 'me';
 
 CatalystX::Features::Role::Backend - Role for implementing a backend.
 
-=head1 VERSION
-
-version 0.10
-
 =head1 DESCRIPTION
 
 This role is an interface. No code here.

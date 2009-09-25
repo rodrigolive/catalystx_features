@@ -20,10 +20,6 @@ sub setup {
 
 CatalystX::Features::Lib - Push your /lib into @INC
 
-=head1 VERSION
-
-version 0.10
-
 =head1 SYNOPSIS
 
 	use Catalyst qw/

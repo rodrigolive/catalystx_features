@@ -45,10 +45,6 @@ sub new {
 
 CatalystX::Features::View::Mason - Makes View::Mason know about features
 
-=head1 VERSION
-
-version 0.10
-
 =head1 SYNOPSIS
 
 	package MyApp::View::Mason;

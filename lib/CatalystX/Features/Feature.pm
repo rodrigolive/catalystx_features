@@ -63,10 +63,6 @@ __END__
 
 CatalystX::Features::Feature - Class that represents a single feature.
 
-=head1 VERSION
-
-version 0.10
-
 =head1 SYNOPSIS
 
     foreach my $feature( $c->features ) {

@@ -84,10 +84,6 @@ __END__
 
 CatalystX::Features - Merges different application directories into your app.
 
-=head1 VERSION
-
-version 0.10
-
 =head1 SYNOPSIS
 
 	package MyApp;
@@ -121,11 +117,15 @@ It also comes handy in a large project, with many developers working on specific
 
 It's a split on underscore C<_>, the first part is the feature name, the second is the feature version.
 
-Also splits on a dash C<->, allowing the feature to be named like C<Feature-0.9123>.  
+Also splits on a dash C<->, allowing the feature to be named as C<Feature-0.9123>.  
 
 If a higher version of a feature is found, that's the one to be used, the rest is ignored
-- a feature without a version is ok, it will be the highest version available - good for local dev and pushing to a repository.
-- a debug box is printed on startup, so you can check which version is running:
+
+=over 
+
+=item * a feature without a version is ok, it will be the highest version available - good for local dev and pushing to a repository.
+
+=item * a debug box is printed on startup, so you can check which version is running:
 
 	[debug] Features Loaded:
 	.----------------------------------------+------------------------+----------.
@@ -134,6 +134,21 @@ If a higher version of a feature is found, that's the one to be used, the rest i
 	| simple.feature_1.0.0                   | simple.feature         | 1.0.0    |
 	.-----------------------------------------------------------------+----------.
 
+=back 
+
+=head2 Ignoring features
+
+If you need a feature to be ignored, append a hash C<#> sign in front of the directory name:
+
+	Rename 
+
+	/MyApp/features/FunnyFeature-1.0
+
+	To
+
+	/MyApp/features/#FunnyFeature-1.0
+
+That way the feature folder will be ignored during the initialization phase.
 
 =head1 CONFIGURATION
 
@@ -192,9 +207,11 @@ These things here, and many, many more that I can't recall right now.
 
 =over 4
 
-=item * Check dependencies among features. 
+=item * Check splicit dependencies among features (although Perl's implicit dependency checking is perfectly valid).
 
-=item * More plugins.
+=item * Be able to run complete tests. 
+
+=item * More plugins: TT::Alloy, Email::Template, etc.
 
 =item * Deploy PAR/ZIP files automatically. 
 

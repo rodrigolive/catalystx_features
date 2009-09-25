@@ -22,10 +22,6 @@ sub setup {
 
 CatalystX::Features::Plugin::Static::Simple - Makes C::P::Static::Simple know about features
 
-=head1 VERSION
-
-version 0.10
-
 =head1 AUTHORS
 
 	Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
@@ -37,4 +33,4 @@ the same terms as Perl itself.
 
 =cut
 
-1;
+1;
