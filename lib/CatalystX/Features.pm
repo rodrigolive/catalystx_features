@@ -95,7 +95,7 @@ CatalystX::Features - Merges different application directories into your app.
 
 =head1 DESCRIPTION
 
-The idea fo this module is to make it easier to spread out outside of the main application directory, in the spirit of Eclipse features and Ruby on Rails plugins. 
+The idea behind this module is to make it easier to spread your code outside of the main application directory, in the spirit of Eclipse features and Ruby on Rails plugins. 
 
 It's mainly useful if you're working on a large application with distinct isolated features that are not tightly coupled with the main app and could be pulled off or eventually reused somewhere else. 
 
