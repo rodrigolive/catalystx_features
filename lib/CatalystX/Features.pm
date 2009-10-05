@@ -6,9 +6,26 @@ use base qw/Class::Accessor::Fast Class::Data::Inheritable/;
 use MRO::Compat;
 use Class::Inspector;
 use Path::Class;
+use File::Spec;
 use CatalystX::Features::Backend;
 
 our $config_key = 'CatalystX::Features';
+
+sub path_to {
+    my $c = shift;
+    my ($package, $file, $line ) = caller;
+    my @args = @_;
+    if( my $backend = $c->features ) {
+        my ($feature, $path);
+        eval {
+            $feature = $backend->find( file=>$file );
+            $path = File::Spec->catdir( $feature->path, @args ); 
+        };
+        return $path if $path and !$@;
+    }
+    my $path = $c->next::method( @args );
+    return $path;
+}
 
 sub features_setup {
     my $c = shift;
@@ -200,6 +217,21 @@ Returns an array of loaded features, which are instances of the L<CatalystX::Fea
 =head2 $c->features_setup
 
 Does the dirty setup work. Called from various C<CatalystX::Features::Plugin::*> to make sure features are loaded.
+
+=head2 $c->path_to
+
+A rewrite of Catalyst's path_to method, so that it will search for the file path within features.
+
+If your feature has the following file:
+
+	MyApp/features/my.feature_1.0/root/file.ext
+
+You may get the path to it using path_to as usual from within your feature:
+
+	my $path = $c->path_to( 'root', 'file.ext' );	
+
+This will work from any feature or from the main app, but it B<does not> allow a
+file in one feature to get a path to a file in another. 
 
 =head1 TODO
 

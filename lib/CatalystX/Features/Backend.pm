@@ -7,6 +7,7 @@ has 'include_path'  => ( is => 'rw', isa => 'ArrayRef' );
 has 'features'      => ( is => 'rw', isa => 'HashRef', default => sub { {} } );
 has 'app'           => ( is => 'ro', isa => 'Any', required=>1 );
 has 'feature_class' => ( is => 'rw', isa => 'Str' );
+has '_find_cache'   => ( is => 'rw', isa => 'HashRef', default=>sub{{}} );
 
 *list = \&_array;
 
@@ -51,9 +52,13 @@ sub find {
     my ( $self, %args ) = @_;
     if( defined $args{file} ) {
         my $file = Path::Class::file( $args{file} );
+		return $self->_find_cache->{$file}
+			if exists $self->_find_cache->{$file};
         for my $feature ( $self->_array ) {
-            return $feature
-              if Path::Class::dir( $feature->path )->contains($file);
+			if( Path::Class::dir( $feature->path )->contains($file) ) {
+				$self->_find_cache->{$file} = $feature;
+				return $feature;
+			}
         }
 
         # not found, return a fake feature for the app
