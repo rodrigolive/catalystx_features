@@ -1,0 +1,17 @@
+0.13  Mon, 05 Oct 2009 10:00:43 +0100
+  * New: path_to files in features
+
+0.12  Fri, 25 Sep 2009 08:00:43 +0100
+  * New: skip features by putting # in front of directories.
+
+0.11  Sat, 19 Sep 2009 10:42:43 +0100
+  * Fixed: feature with no version now has topmost priority.
+  * Separated tests by type.
+  * Tests now check if plugins or views are available.
+
+0.1011 Thu, 07 Sep 2009 10:45:04 +0100
+  * Fix some test errors.
+
+0.10  Thu, 06 Jun 2009 06:45:11 +0100
+  * Initial release.
+
