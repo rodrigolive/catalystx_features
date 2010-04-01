@@ -1,3 +1,12 @@
+0.15  Thu Apr 1 19:03:01 CET 2010
+  * Now requires Catalyst 5.80015
+  * Also requires Static::Simple, just in case
+  * Changed Static::Simple to consume the original plugin as a role. 
+  * No more 'parent' dependencies
+
+0.14  Sat Nov 14 11:06:34 CET 2009
+  * Fixed broken tests
+
 0.13  Mon, 05 Oct 2009 10:00:43 +0100
   * New: path_to files in features
 

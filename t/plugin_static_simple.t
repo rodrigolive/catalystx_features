@@ -4,7 +4,7 @@ use Test::More;
 use B::Deparse;
 
 use FindBin;
-use lib "$FindBin::Bin/TestApp/lib";
+use lib "$FindBin::Bin/TestAppStatic/lib";
 
 eval { require Catalyst::Plugin::Static::Simple };
 plan skip_all => "Catalyst::Plugin::Static::Simple not installed" if $@; 

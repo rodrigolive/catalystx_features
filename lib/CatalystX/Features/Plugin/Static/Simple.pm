@@ -1,13 +1,13 @@
 package CatalystX::Features::Plugin::Static::Simple;
-use warnings;
-use strict;
+use Moose::Role;
 use Carp;
-use parent qw/Catalyst::Plugin::Static::Simple/; 
-use MRO::Compat;
 
-sub setup {
+with 'Catalyst::Plugin::Static::Simple';
+
+use namespace::autoclean;
+
+after setup_finalize => sub {
     my $c = shift;
-    $c->next::method(@_);
 
     my $config = $c->config;
 
@@ -16,7 +16,7 @@ sub setup {
         push( @{ $config->{static}->{include_path} }, $feature->root );
     }
     return $c;
-}
+};
 
 =head1 NAME
 
