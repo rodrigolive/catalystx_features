@@ -1,4 +1,5 @@
 package CatalystX::Features::Backend;
+use Class::MOP ();
 use Moose;
 use Path::Class;
 use Carp;
@@ -26,7 +27,7 @@ sub init {
             $self->feature_class( $feature_class );
 
             # init feature
-			eval "require $feature_class";
+            Class::MOP::load_class( $feature_class );
             my $feature = $feature_class->new(
                 {
                     path    => "$feature_path",
