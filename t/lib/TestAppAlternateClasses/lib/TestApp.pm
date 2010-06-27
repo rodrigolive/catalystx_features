@@ -20,6 +20,7 @@ __PACKAGE__->config(
     name => 'TestApp',
     'CatalystX::Features' => {
         'backend_class' => 'TestBackendClass',
+        'feature_class' => 'TestFeatureClass',
     },
    );
 
