@@ -5,9 +5,9 @@ use Carp;
 use base qw/Class::Accessor::Fast Class::Data::Inheritable/;
 use MRO::Compat;
 use Class::Inspector;
+use Class::MOP;
 use Path::Class;
 use File::Spec;
-use CatalystX::Features::Backend;
 
 our $config_key = 'CatalystX::Features';
 
@@ -37,8 +37,10 @@ sub features_setup {
         $config->{home} ||=
           [ Path::Class::dir( $c->config->{home} . "/features" )->stringify ];
 
-        my $backend_class = $config->{backend}
+        my $backend_class = $config->{backend_class}
           || 'CatalystX::Features::Backend';
+
+        Class::MOP::load_class($backend_class);
 
         my $backend = $backend_class->new(
             {
