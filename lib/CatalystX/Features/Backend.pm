@@ -21,7 +21,7 @@ sub init {
         my @features = $self->_find_features($home);
         foreach my $feature_path (@features) {
 
-            my $feature_class = $self->app->config->{feature_class}
+            my $feature_class = $self->config->{feature_class}
               || 'CatalystX::Features::Feature';
 
             $self->feature_class( $feature_class );
@@ -93,7 +93,7 @@ sub _push_feature {
 
 sub config {
     my $self = shift;
-    return $self->app->config->{$CatalystX::Features::config_key};
+    return $self->app->config->{$CatalystX::Features::config_key} ||= {};
 }
 
 sub _array {
