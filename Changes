@@ -1,5 +1,5 @@
 0.16
-  * fixed backend_class config option (rbuels)
+  * fixed backend_class and feature_class config options (rbuels)
 
 0.15  Thu Apr 1 19:03:01 CET 2010
   * Now requires Catalyst 5.80015
