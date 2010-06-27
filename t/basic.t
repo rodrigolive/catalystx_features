@@ -4,7 +4,7 @@ use Test::More tests => 3;
 use B::Deparse;
 
 use FindBin;
-use lib "$FindBin::Bin/TestApp/lib";
+use lib "$FindBin::Bin/lib/TestApp/lib";
 
 use Catalyst::Test 'TestApp';
 

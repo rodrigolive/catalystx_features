@@ -4,7 +4,7 @@ use Test::More;
 use B::Deparse;
 
 use FindBin;
-use lib "$FindBin::Bin/TestAppTT/lib";
+use lib "$FindBin::Bin/lib/TestAppTT/lib";
 
 eval { require Catalyst::View::TT };
 plan skip_all => "View::TT not installed" if $@; 

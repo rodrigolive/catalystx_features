@@ -4,7 +4,7 @@ use Test::More;
 use B::Deparse;
 
 use FindBin;
-use lib "$FindBin::Bin/TestAppMason/lib";
+use lib "$FindBin::Bin/lib/TestAppMason/lib";
 
 eval { require Catalyst::View::Mason };
 plan skip_all => "View::Mason not installed" if $@; 
