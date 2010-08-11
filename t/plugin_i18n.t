@@ -4,7 +4,7 @@ use Test::More;
 use B::Deparse;
 
 use FindBin;
-use lib "$FindBin::Bin/TestAppI18N/lib";
+use lib "$FindBin::Bin/lib/TestAppI18N/lib";
 
 eval { require Catalyst::Plugin::I18N };
 plan skip_all => "Catalyst::Plugin::I18N not installed" if $@; 

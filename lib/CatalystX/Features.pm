@@ -1,6 +1,6 @@
 package CatalystX::Features;
-use warnings;
 use strict;
+use warnings;
 use Carp;
 use base qw/Class::Accessor::Fast Class::Data::Inheritable/;
 use MRO::Compat;

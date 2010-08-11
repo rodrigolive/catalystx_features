@@ -1,5 +1,14 @@
-0.16
+0.19 Wed Aug 11 10:15:36 CEST 2010
   * fixed backend_class and feature_class config options (rbuels)
+
+0.18 Sat Apr 24 10:26:06 CEST 2010
+  * More dependencies for failing tests
+
+0.17 Sat Apr 17 18:27:15 CEST 2010
+  * Removed useless Class::Inspector dependency
+
+0.16 Sat Apr  3 01:43:03 CEST 2010
+  * Added Plugin::ConfigLoader requirement
 
 0.15  Thu Apr 1 19:03:01 CET 2010
   * Now requires Catalyst 5.80015
