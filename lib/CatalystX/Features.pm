@@ -253,9 +253,12 @@ These things here, and many, many more that I can't recall right now.
 
 =back
 
-=head1 AUTHORS
+=head1 AUTHOR
 
 	Rodrigo de Oliveira (rodrigolive), C<rodrigolive@gmail.com>
+
+=head1 CONTRIBUTORS
+
     Robert Buels (rbuels), C<rbuels@cpan.org>
 
 =head1 LICENSE
