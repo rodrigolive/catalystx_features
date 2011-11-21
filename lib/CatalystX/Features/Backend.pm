@@ -17,6 +17,10 @@ with 'CatalystX::Features::Role::Backend';
 sub init {
     my $self = shift;
     return if $ENV{CATALYSTX_NO_FEATURES};
+    my $disabled = $CatalystX::Features::DISABLED;
+    $disabled ||= [];
+    carp '$CatalystX::Features::DISABLED must be an ARRAYREF' if ref $disabled ne 'ARRAY';
+    $disabled = +{  map { $_ => 1 } @$disabled };
     for my $home ( @{ $self->include_path || [] } ) {
         my @features = $self->_find_features($home);
         foreach my $feature_path (@features) {
@@ -34,9 +38,9 @@ sub init {
                     backend => $self,
                 }
             );
-
             $self->_push_feature($feature)
-                if $feature->id !~ m/^#/;
+                if $feature->id !~ m/^#/
+                && ! exists $disabled->{ $feature->name };
         }
     }
 }

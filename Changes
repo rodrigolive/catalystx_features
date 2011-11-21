@@ -1,4 +1,7 @@
-0.19 Wed Aug 11 10:15:36 CEST 2010
+0.21 Mon Nov 21 18:00:12 CET 2011
+  * NEW: now you can disable a feature from the DISABLED variable
+
+0.20 Wed Aug 11 10:15:36 CEST 2010
   * fixed backend_class and feature_class config options (rbuels)
 
 0.18 Sat Apr 24 10:26:06 CEST 2010
