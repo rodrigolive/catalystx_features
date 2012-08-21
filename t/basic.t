@@ -1,8 +1,7 @@
 use strict;
 use warnings;
-use Test::More tests => 3;
+use Test::More;
 use B::Deparse;
-
 use FindBin;
 use lib "$FindBin::Bin/lib/TestApp/lib";
 
@@ -17,6 +16,12 @@ use Catalyst::Test 'TestApp';
         grep( m{/TestApp/root/static/main.js$},
             $c->path_to( 'root', 'static', 'main.js' ) ),
         'normal path_to works'
+    );
+
+    ok(
+        grep( m{/TestApp/features/FEATURE/root/ff.js$},
+            $c->path_to( 'root', 'ff.js' ) ),
+        'feature path_to works'
     );
 
 	my @list = $c->features->list;
