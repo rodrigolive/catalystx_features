@@ -13,18 +13,22 @@ our $config_key = 'CatalystX::Features';
 
 sub path_to {
     my $c = shift;
-    my ($package, $file, $line ) = caller;
+    my ($cpackage, $cfile, $cline ) = caller;
     my @args = @_;
+    my $file = Path::Class::file( @args );
+    my $path_orig = $c->next::method( @args );
+    return $path_orig if -e $path_orig;
     if( my $backend = $c->features ) {
         my ($feature, $path);
         eval {
             $feature = $backend->find( file=>$file );
             $path = File::Spec->catdir( $feature->path, @args ); 
         };
-        return $path if $path and !$@;
-    }
-    my $path = $c->next::method( @args );
-    return $path;
+        if( $path and !$@ ) {
+            return -d $path ? Path::Class::dir( $path ) : Path::Class::file( $path );
+        }
+    } 
+    return $path_orig;
 }
 
 sub features_setup {

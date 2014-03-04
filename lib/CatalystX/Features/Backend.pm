@@ -60,7 +60,7 @@ sub find {
 		return $self->_find_cache->{$file}
 			if exists $self->_find_cache->{$file};
         for my $feature ( $self->_array ) {
-			if( Path::Class::dir( $feature->path )->contains($file) ) {
+			if( -e Path::Class::file( $feature->path, $file ) ) {
 				$self->_find_cache->{$file} = $feature;
 				return $feature;
 			}
