@@ -2,6 +2,7 @@ package CatalystX::Features::Backend;
 use Class::MOP ();
 use Moose;
 use Path::Class;
+use Module::Runtime qw(use_module);
 use Carp;
 
 has 'include_path'  => ( is => 'rw', isa => 'ArrayRef' );
@@ -31,7 +32,7 @@ sub init {
             $self->feature_class( $feature_class );
 
             # init feature
-            Class::MOP::load_class( $feature_class );
+            use_module( $feature_class );
             my $feature = $feature_class->new(
                 {
                     path    => "$feature_path",

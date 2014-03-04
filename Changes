@@ -1,3 +1,6 @@
+0.25 Tue Mar  4 10:24:17 CET 2014
+  * Class::MOP::load_class is deprecated in Moose 2.1100
+
 0.24 Mon Nov 19 19:57:19 CET 2012
   * BUG: path_to was not returning Path::Class object
 
