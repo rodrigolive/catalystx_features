@@ -11,14 +11,14 @@ sub setup {
 
     foreach my $feature ( $c->features->list ) {
         # change INC
-        push @INC, $feature->lib;
+        unshift @INC, $feature->lib;
 	}
 
 }
 
 =head1 NAME
 
-CatalystX::Features::Lib - Push your /lib into @INC
+CatalystX::Features::Lib - Unshift your /lib into @INC
 
 =head1 SYNOPSIS
 
@@ -31,7 +31,7 @@ CatalystX::Features::Lib - Push your /lib into @INC
 
 =head2 setup
 
-Pushes your feature C</lib> in @INC.
+Unshifts your feature C</lib> in @INC.
 
 =head1 TODO
 
