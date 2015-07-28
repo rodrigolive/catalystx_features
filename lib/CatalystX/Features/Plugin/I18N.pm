@@ -1,4 +1,5 @@
 package CatalystX::Features::Plugin::I18N;
+
 use strict;
 use warnings;
 use parent 'Catalyst::Plugin::I18N';

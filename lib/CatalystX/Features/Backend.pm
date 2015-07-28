@@ -1,4 +1,5 @@
 package CatalystX::Features::Backend;
+
 use Class::MOP ();
 use Moose;
 use Path::Class;

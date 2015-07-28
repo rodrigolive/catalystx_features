@@ -1,4 +1,5 @@
 package CatalystX::Features::View::TT;
+
 use strict;
 use warnings;
 use base 'Catalyst::View::TT';

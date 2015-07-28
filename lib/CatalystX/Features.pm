@@ -1,4 +1,5 @@
 package CatalystX::Features;
+
 use strict;
 use warnings;
 use Carp;

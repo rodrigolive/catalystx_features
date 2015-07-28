@@ -1,4 +1,5 @@
 package CatalystX::Features::Plugin::ConfigLoader;
+
 use warnings;
 use strict;
 use Carp;

@@ -1,4 +1,5 @@
 package CatalystX::Features::Role::Feature;
+
 use Moose::Role;
 
 # attributes

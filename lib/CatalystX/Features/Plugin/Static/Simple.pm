@@ -1,4 +1,5 @@
 package CatalystX::Features::Plugin::Static::Simple;
+
 use Moose::Role;
 use Carp;
 

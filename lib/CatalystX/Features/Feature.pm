@@ -1,4 +1,5 @@
 package CatalystX::Features::Feature;
+
 use Moose;
 use Path::Class;
 use Catalyst::Utils;

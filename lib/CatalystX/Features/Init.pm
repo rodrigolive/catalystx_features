@@ -1,4 +1,5 @@
 package CatalystX::Features::Init;
+
 use Moose;
 
 =head1 NAME
