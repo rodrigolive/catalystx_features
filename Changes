@@ -1,3 +1,6 @@
+0.26 Wed Jul 29 11:22:35 CEST 2015
+  * unshift feature lib instead of shift
+
 0.25 Tue Mar  4 10:24:17 CET 2014
   * Class::MOP::load_class is deprecated in Moose 2.1100
 
